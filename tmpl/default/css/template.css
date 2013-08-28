@@ -1,0 +1,26 @@
+/**
+ * @version		3.0
+ * @package		Simple RSS Feed Reader (module)
+ * @author    JoomlaWorks - http://www.joomlaworks.net
+ * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ */
+
+/* Template: Default */
+
+/* Common */
+a:active,
+a:focus {outline:0;}
+img {border:none;}
+.clr {clear:both;height:0;line-height:0;display:block;float:none;padding:0;margin:0;border:0;}
+
+/* Feed List */
+div.srfrContainer {}
+div.srfrContainer ul.srfrList {list-style:none;padding:0;margin:0;}
+div.srfrContainer ul.srfrList li {clear:both;padding:8px;margin:2px 0;border-bottom:1px dotted #ccc;}
+div.srfrContainer ul.srfrList li.srfrRow {}
+	div.srfrContainer ul.srfrList li.srfrRowIsEven {}
+	div.srfrContainer ul.srfrList li.srfrRowIsOdd {}
+div.srfrContainer ul.srfrList li img.srfrImage {margin:4px auto;padding:0;display:block;/*width:100%;height:auto;*/}
+div.srfrContainer ul.srfrList li span.srfrFeedSource {}
+div.srfrContainer ul.srfrList li span.srfrFeedItemDate {color:#999;}
