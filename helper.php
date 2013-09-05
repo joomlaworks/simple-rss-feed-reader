@@ -220,7 +220,7 @@ class SimpleRssFeedReaderHelper {
 			$replaceComponents = array("","");
 			$turl = preg_replace($matchComponents,$replaceComponents,$turl[0]);
 			$turl = str_replace(array("/","-","."),array("_","_","_"),$turl);
-			$tmpFile = $cacheFolderPath.DS.urlencode($turl).'.cache';
+			$tmpFile = $cacheFolderPath.DS.urlencode($turl).'_'.md5($url).'.cache';
 		} else {
 			$tmpFile = $cacheFolderPath.DS.'cached_'.md5($url);
 		}
