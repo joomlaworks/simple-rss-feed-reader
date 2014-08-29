@@ -130,6 +130,7 @@ class SimpleRssFeedReaderHelper {
 		$feedContents = array();
 		foreach($feeds as $key=>$feed){
 			libxml_use_internal_errors(true);
+			$feedContents[$key] = new stdClass;
 			$xml = simplexml_load_string($feed);
 			if(is_object($xml) && $items = $xml->xpath("/rss/channel/item")) {
 				$feedContents[$key]->feedSubscribeUrl = $feed;
