@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		3.1
+ * @version		3.2
  * @package		Simple RSS Feed Reader (module)
- * @author    JoomlaWorks - http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @author    	JoomlaWorks - http://www.joomlaworks.net
+ * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
  * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
