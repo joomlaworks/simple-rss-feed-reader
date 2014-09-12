@@ -43,16 +43,16 @@ class SimpleRssFeedReaderHelper {
 				// Create an object to store feed elements
 				$feedElements[$key] = new JObject;
 
-				$feedElements[$key]->itemTitle 				= $item->title;
-				$feedElements[$key]->itemLink 				= $item->link;
-				$feedElements[$key]->itemDate 				= strftime($dateFormat,strtotime($item->pubDate));
-				$feedElements[$key]->itemDateRSS 			= $item->pubDate;
+				$feedElements[$key]->itemTitle 			= $item->title;
+				$feedElements[$key]->itemLink 			= $item->link;
+				$feedElements[$key]->itemDate 			= strftime($dateFormat,strtotime($item->pubDate));
+				$feedElements[$key]->itemDateRSS 		= $item->pubDate;
 				$feedElements[$key]->itemDescription 	= $item->description;
-				$feedElements[$key]->feedImageSrc			= '';
+				$feedElements[$key]->feedImageSrc		= '';
 
-				$feedElements[$key]->feedTitle 				= self::wordLimiter($feed->feedTitle,10);
-				$feedElements[$key]->feedURL					= $feed->feedSubscribeUrl;
-				$feedElements[$key]->siteURL					= $feed->feedLink;
+				$feedElements[$key]->feedTitle 			= self::wordLimiter($feed->feedTitle,10);
+				$feedElements[$key]->feedURL			= $feed->feedSubscribeUrl;
+				$feedElements[$key]->siteURL			= $feed->feedLink;
 
 				// Give each feed an index based on date
 				$itemDateIndex = strftime('%Y%m%d%H%M',strtotime($item->pubDate));
@@ -86,7 +86,7 @@ class SimpleRssFeedReaderHelper {
 
 					// then resize and/or assign to variable
 					if($imageHandling==2){
-						$feedItem->feedImageSrc = 'http://src'.rand(1,6).'.sencha.io/'.$riWidth.'/'.$feedImage['src'];
+						$feedItem->feedImageSrc = 'http://ir0.mobify.com/'.$riWidth.'/'.$feedImage['src'];
 					} else {
 						$feedItem->feedImageSrc = $feedImage['src'];
 					}
