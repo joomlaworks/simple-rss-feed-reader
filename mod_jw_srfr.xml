@@ -2,7 +2,7 @@
 <extension type="module" client="site" version="2.5" method="upgrade">
 	<name>Simple RSS Feed Reader (by JoomlaWorks)</name>
 	<author>JoomlaWorks</author>
-	<authorEmail>contact@joomlaworks.net</authorEmail>
+	<authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
 	<authorUrl>www.joomlaworks.net</authorUrl>
 	<copyright>Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.</copyright>
 	<creationDate>September 12th, 2014</creationDate>
@@ -83,4 +83,7 @@
 		<language tag="en-GB">language/en-GB/en-GB.mod_jw_srfr.ini</language>
 		<language tag="en-GB">language/en-GB/en-GB.mod_jw_srfr.sys.ini</language>
 	</languages>
+	<updateservers>
+		<server type="extension" priority="1" name="Simple RSS Feed Reader">http://www.joomlaworks.net/updates/jw_srfr.xml</server>
+	</updateservers>
 </extension>
