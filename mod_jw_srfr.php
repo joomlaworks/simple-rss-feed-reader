@@ -21,38 +21,39 @@ if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
 // API
 $mainframe	= JFactory::getApplication();
 $document 	= JFactory::getDocument();
-$db 				= JFactory::getDBO();
-$user 			= JFactory::getUser();
-$aid 				= $user->get('aid');
+$db 		= JFactory::getDBO();
+$user 		= JFactory::getUser();
+$aid 		= $user->get('aid');
 
 // Assign paths
 $sitePath 	= JPATH_SITE;
 $siteUrl  	= substr(JURI::base(), 0, -1);
 
 // Module parameters
-$moduleclass_sfx 							= $params->get('moduleclass_sfx','');
-$template 										= $params->get('template','default');
-$srfrFeeds 										= $params->get('srfrFeeds');
-$srfrFeedsArray 							= explode("\n",$srfrFeeds);
-$perFeedItems 								= $params->get('perFeedItems',5);
-$totalFeedItems 							= $params->get('totalFeedItems',10);
-$feedTimeout									= $params->get('feedTimeout',5);
-$feedTitle										= $params->get('feedTitle',1);
-$feedItemTitle								= $params->get('feedItemTitle',1);
-$feedItemDate									= $params->get('feedItemDate',1);
-$feedItemDateFormat						= $params->get('feedItemDateFormat','%b %e, %Y | %H:%M %P');
-$feedItemDescription					= $params->get('feedItemDescription',1);
+$moduleclass_sfx 				= $params->get('moduleclass_sfx','');
+$template 						= $params->get('template','default');
+$srfrFeeds 						= $params->get('srfrFeeds');
+$srfrFeedsArray 				= explode("\n",$srfrFeeds);
+$perFeedItems 					= $params->get('perFeedItems',5);
+$totalFeedItems 				= $params->get('totalFeedItems',10);
+$feedTimeout					= $params->get('feedTimeout',5);
+$feedTitle						= $params->get('feedTitle',1);
+$feedItemTitle					= $params->get('feedItemTitle',1);
+$feedItemDate					= $params->get('feedItemDate',1);
+$feedItemDateFormat				= $params->get('feedItemDateFormat','%b %e, %Y | %H:%M %P');
+$feedItemDescription			= $params->get('feedItemDescription',1);
 $feedItemDescriptionWordlimit	= $params->get('feedItemDescriptionWordlimit',40);
-$feedItemImageHandling				= $params->get('feedItemImageHandling',2);
-$feedItemImageResizeWidth			= $params->get('feedItemImageResizeWidth',200);
-$feedItemReadMore							= $params->get('feedItemReadMore',1);
-$feedsBlockPreText						= $params->get('feedsBlockPreText');
-$feedsBlockPostText						= $params->get('feedsBlockPostText');
-$feedsBlockPostLink						= $params->get('feedsBlockPostLink');
-$feedsBlockPostLinkURL				= $params->get('feedsBlockPostLinkURL');
-$feedsBlockPostLinkTitle			= $params->get('feedsBlockPostLinkTitle');
-$srfrCacheTime								= $params->get('srfrCacheTime',30);
-$cacheLocation								= 'cache'.DS.$mod_name;
+$feedItemImageHandling			= $params->get('feedItemImageHandling',2);
+$feedItemImageResizeWidth		= $params->get('feedItemImageResizeWidth',200);
+$feedItemReadMore				= $params->get('feedItemReadMore',1);
+$feedsBlockPreText				= $params->get('feedsBlockPreText');
+$feedsBlockPostText				= $params->get('feedsBlockPostText');
+$feedsBlockPostLink				= $params->get('feedsBlockPostLink');
+$feedsBlockPostLinkURL			= $params->get('feedsBlockPostLinkURL');
+$feedsBlockPostLinkTitle		= $params->get('feedsBlockPostLinkTitle');
+$feedItemLinkRedirect			= $params->get('feedItemLinkRedirect',0);
+$srfrCacheTime					= $params->get('srfrCacheTime',30);
+$cacheLocation					= 'cache'.DS.$mod_name;
 
 // Includes
 require_once(dirname(__FILE__).DS.'helper.php');

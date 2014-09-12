@@ -73,6 +73,11 @@ class SimpleRssFeedReaderHelper {
 
 			// Clean up the feed title
 			$feedItem->itemTitle = trim(htmlentities($feedItem->itemTitle, ENT_QUOTES, 'utf-8'));
+			
+			// URL Redirect
+			if($feedItemLinkRedirect){
+				$feedItem->itemLink = $siteUrl.'/modules/mod_jw_srfr/redir.php?url='.urlencode($feedItem->itemLink);
+			}
 
 			// Determine if an image reference exists in the feed description
 			if($imageHandling==1 || $imageHandling==2){
