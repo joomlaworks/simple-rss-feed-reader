@@ -55,7 +55,7 @@ class SimpleRssFeedReaderHelper {
 				$feedElements[$key]->siteURL			= $feed->feedLink;
 
 				// Give each feed an index based on date
-				$itemDateIndex = strftime('%Y%m%d%H%M',strtotime($item->pubDate));
+				$itemDateIndex = strftime('%Y%m%d%H%M',strtotime($item->pubDate)).'_'.$key;
 
 				// Pass all feed objects to an array
 				$feedItemsArray[$itemDateIndex] = $feedElements[$key];
