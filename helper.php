@@ -75,7 +75,7 @@ class SimpleRssFeedReaderHelper {
 			$feedItem->itemTitle = trim(htmlentities($feedItem->itemTitle, ENT_QUOTES, 'utf-8'));
 			
 			// URL Redirect
-			if($feedItemLinkRedirect){
+			if(isset($feedItemLinkRedirect) && $feedItemLinkRedirect){
 				$feedItem->itemLink = $siteUrl.'/modules/mod_jw_srfr/redir.php?url='.urlencode($feedItem->itemLink);
 			}
 
