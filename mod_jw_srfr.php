@@ -31,7 +31,7 @@ $siteUrl  	= substr(JURI::base(), 0, -1);
 
 // Module parameters
 $moduleclass_sfx 				= $params->get('moduleclass_sfx','');
-$template 						= $params->get('template','default');
+$mod_template 						= $params->get('template','default');
 $srfrFeeds 						= $params->get('srfrFeeds');
 $srfrFeedsArray 				= explode("\n",$srfrFeeds);
 $perFeedItems 					= $params->get('perFeedItems',5);
@@ -64,7 +64,7 @@ $output = $srfr->getFeeds($srfrFeedsArray,$totalFeedItems,$perFeedItems,$feedTim
 
 // Output content with template
 echo $mod_copyrights_start;
-require(JModuleHelper::getLayoutPath($mod_name,$template.DS.'default'));
+require(JModuleHelper::getLayoutPath($mod_name,$mod_template.DS.'default'));
 echo $mod_copyrights_end;
 
 // END
