@@ -49,8 +49,8 @@
 					<option value="1">MOD_JW_SRFR_SHOW</option>
 				</field>
 				<field name="" type="header" default="MOD_JW_SRFR_ADDITIONAL_CONTENT_OPTIONS" label="" description="" />
-				<field name="feedsBlockPreText" type="textarea" default="" label="MOD_JW_SRFR_DESCRIPTION_TEXT_AT_THE_TOP_OF_THE_FEEDS_BLOCK_OPTIONAL" description="" cols="40" rows="4" />
-				<field name="feedsBlockPostText" type="textarea" default="" label="MOD_JW_SRFR_DESCRIPTION_TEXT_AT_THE_BOTTOM_OF_THE_FEEDS_BLOCK_OPTIONAL" description="" cols="40" rows="4" />
+				<field name="feedsBlockPreText" type="textarea" default="" label="MOD_JW_SRFR_DESCRIPTION_TEXT_AT_THE_TOP_OF_THE_FEEDS_BLOCK_OPTIONAL" description="" cols="40" rows="4" filter="raw" />
+				<field name="feedsBlockPostText" type="textarea" default="" label="MOD_JW_SRFR_DESCRIPTION_TEXT_AT_THE_BOTTOM_OF_THE_FEEDS_BLOCK_OPTIONAL" description="" cols="40" rows="4" filter="raw" />
 				<field name="feedsBlockPostLink" type="radio" default="0" label="MOD_JW_SRFR_ENABLE_CUSTOM_LINK_AT_THE_BOTTOM_OF_THE_FEEDS_BLOCK" description="">
 					<option value="0">MOD_JW_SRFR_NO</option>
 					<option value="1">MOD_JW_SRFR_YES</option>
