@@ -155,7 +155,19 @@ class SimpleRssFeedReaderHelper {
 				foreach ($items as $item) {
 					$tmp = new stdClass();
 					$tmp->title = (string)$item->title;
-					$tmp->link = (string)$item->link->attributes()->href;
+					if($item->link->count() > 1)
+					{
+						foreach($item->link as $link)
+						{
+							if((string)$link->attributes()->rel == 'alternate') {
+								$tmp->link = (string)$link->attributes()->href;
+							}
+						}
+					}
+					else
+					{
+						$tmp->link = (string)$item->link->attributes()->href;
+					}
 					$tmp->pubDate = (string)$item->updated;
 					$tmp->description = (!empty($item->content)) ? $item->content:$item->summary;
 					$tmp->author = (string)$item->author->name;
