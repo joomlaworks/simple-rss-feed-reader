@@ -12,7 +12,7 @@ defined('_JEXEC') or die('Restricted access');
 
 class SimpleRssFeedReaderHelper {
 
-	function getFeeds($feedsArray,$totalFeedItems,$perFeedItems,$feedTimeout,$dateFormat,$wordLimit,$cacheLocation,$cacheTime,$imageHandling,$riWidth){
+	function getFeeds($feedsArray,$totalFeedItems,$perFeedItems,$feedTimeout,$dateFormat,$wordLimit,$cacheLocation,$cacheTime,$imageHandling,$riWidth, $feedItemLinkRedirect){
 
 		/*
 			Legend for '$imageHandling':
@@ -76,7 +76,7 @@ class SimpleRssFeedReaderHelper {
 			
 			// URL Redirect
 			if(isset($feedItemLinkRedirect) && $feedItemLinkRedirect){
-				$feedItem->itemLink = $siteUrl.'/modules/mod_jw_srfr/redir.php?url='.urlencode($feedItem->itemLink);
+				$feedItem->itemLink = JURI::root(true).'/modules/mod_jw_srfr/redir.php?url='.urlencode($feedItem->itemLink);
 			}
 
 			// Determine if an image reference exists in the feed description

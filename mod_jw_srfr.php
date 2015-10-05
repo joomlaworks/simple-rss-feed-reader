@@ -60,7 +60,7 @@ require_once(dirname(__FILE__).DS.'helper.php');
 
 // Fetch content
 $srfr = new SimpleRssFeedReaderHelper;
-$output = $srfr->getFeeds($srfrFeedsArray,$totalFeedItems,$perFeedItems,$feedTimeout,$feedItemDateFormat,$feedItemDescriptionWordlimit,$cacheLocation,$srfrCacheTime,$feedItemImageHandling,$feedItemImageResizeWidth);
+$output = $srfr->getFeeds($srfrFeedsArray,$totalFeedItems,$perFeedItems,$feedTimeout,$feedItemDateFormat,$feedItemDescriptionWordlimit,$cacheLocation,$srfrCacheTime,$feedItemImageHandling,$feedItemImageResizeWidth, $feedItemLinkRedirect);
 
 // Output content with template
 echo $mod_copyrights_start;
