@@ -24,8 +24,6 @@ class SimpleRssFeedReaderHelper {
 		// API
 		$mainframe = JFactory::getApplication();
 
-		$cacheTime = $cacheTime*60;
-
 		// Check if the cache folder exists
 		$cacheFolderPath = JPATH_SITE.DS.$cacheLocation;
 		if(file_exists($cacheFolderPath) && is_dir($cacheFolderPath)){
