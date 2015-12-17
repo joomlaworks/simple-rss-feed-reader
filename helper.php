@@ -144,6 +144,7 @@ class SimpleRssFeedReaderHelper {
 					$msg .= "\n" . $error->message;
 				}
 				JFactory::getApplication()->enqueueMessage($msg);
+				libxml_clear_errors();
 				continue;
 			}
 
