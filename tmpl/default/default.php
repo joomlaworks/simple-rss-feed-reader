@@ -47,7 +47,7 @@ $document->addStyleSheet($filePath.'/css/template.css');
 				<?php endif; ?>
 
 				<?php if($feedItemDescription): ?>
-				<?php echo $feed->itemDescription; ?>
+				<?php echo htmlspecialchars_decode($feed->itemDescription); ?>
 				<?php endif; ?>
 			</p>
 			<?php endif; ?>

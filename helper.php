@@ -24,8 +24,6 @@ class SimpleRssFeedReaderHelper {
 		// API
 		$mainframe = JFactory::getApplication();
 
-		$cacheTime = $cacheTime*60;
-
 		// Check if the cache folder exists
 		$cacheFolderPath = JPATH_SITE.DS.$cacheLocation;
 		if(file_exists($cacheFolderPath) && is_dir($cacheFolderPath)){
@@ -135,8 +133,24 @@ class SimpleRssFeedReaderHelper {
 		$feedContents = array();
 		foreach($feeds as $key=>$feed){
 			libxml_use_internal_errors(true);
-			$feedContents[$key] = new stdClass;
 			$xml = simplexml_load_string($feed);
+
+			/*
+			 * If the feed didn't parse, generate a warning and skip it
+			 */
+			if ($xml === false) {
+				$msg = "Failed loading XML\n";
+				foreach(libxml_get_errors() as $error) {
+					$msg .= "\n" . $error->message;
+				}
+				JFactory::getApplication()->enqueueMessage($msg);
+				libxml_clear_errors();
+				continue;
+			}
+
+			$feedContents[$key] = new stdClass;
+
+
 			if(is_object($xml) && $items = $xml->xpath("/rss/channel/item")) {
 				$feedContents[$key]->feedSubscribeUrl = $feed;
 				$feedContents[$key]->feedTitle = $xml->channel->title;
