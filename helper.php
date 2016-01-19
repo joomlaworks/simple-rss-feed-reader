@@ -71,7 +71,7 @@ class SimpleRssFeedReaderHelper {
 
 			// Clean up the feed title
 			$feedItem->itemTitle = trim(htmlentities($feedItem->itemTitle, ENT_QUOTES, 'utf-8'));
-			
+
 			// URL Redirect
 			if(isset($feedItemLinkRedirect) && $feedItemLinkRedirect){
 				$feedItem->itemLink = JURI::root(true).'/modules/mod_jw_srfr/redir.php?url='.urlencode($feedItem->itemLink);
@@ -122,8 +122,11 @@ class SimpleRssFeedReaderHelper {
 
 		$result = array();
 		foreach ($data as $id => $url) {
-			$feed = self::getFile($url,$cacheTime,$subFolderName='feeds');
-			$result[$id] = JFile::read($feed);
+      $url = trim($url);
+      if($url) {
+        $feed = self::getFile($url,$cacheTime,$subFolderName='feeds');
+  			$result[$id] = JFile::read($feed);
+      }
 		}
 		return $result;
 	}
