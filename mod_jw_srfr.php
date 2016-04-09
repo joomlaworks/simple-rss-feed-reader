@@ -26,8 +26,8 @@ $user 		= JFactory::getUser();
 $aid 		= $user->get('aid');
 
 // Assign paths
-$sitePath 	= JPATH_SITE;
-$siteUrl  	= substr(JURI::base(), 0, -1);
+$sitePath	= JPATH_SITE;
+$siteUrl	= JURI::root(true);
 
 // Module parameters
 $moduleclass_sfx 				= $params->get('moduleclass_sfx','');
