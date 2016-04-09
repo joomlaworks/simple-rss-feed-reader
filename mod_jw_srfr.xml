@@ -7,7 +7,7 @@
 	<copyright>Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.</copyright>
 	<creationDate>April 9th, 2016</creationDate>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<version>3.4</version>
+	<version>3.5</version>
 	<description>MOD_JW_SRFR_SIMPLE_RSS_FEED_READER_MODULE_BY_JOOMLAWORKS</description>
 	<config>
 		<fields name="params">
