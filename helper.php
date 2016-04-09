@@ -115,11 +115,7 @@ class SimpleRssFeedReaderHelper {
 
 	// Get array of feeds
 	function multiRequest($data,$cacheTime) {
-		// Set max_execution_time to 120
-		ini_set('max_execution_time',120);
-
-		$cacheTime = $cacheTime*60;
-
+		ini_set('max_execution_time',120); // Set max_execution_time to 120
 		$result = array();
 		foreach ($data as $id => $url) {
 			$url = trim($url);
@@ -136,9 +132,9 @@ class SimpleRssFeedReaderHelper {
 		if(!isset($perFeedItems)){
 			$perFeedItems = 5;
 		}
-		
+
 		$feedContents = array();
-		
+
 		foreach($feeds as $key=>$feed){
 			if($key<$perFeedItems){
 				libxml_use_internal_errors(true);
