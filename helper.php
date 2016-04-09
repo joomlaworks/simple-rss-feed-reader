@@ -33,7 +33,7 @@ class SimpleRssFeedReaderHelper {
 		}
 
 		$feeds = self::multiRequest($feedsArray,$cacheTime);
-		$parsedFeeds = self::parseFeeds($feeds);
+		$parsedFeeds = self::parseFeeds($feeds,$perFeedItems);
 		$feedItemsArray = array();
 
 		foreach($parsedFeeds as $feed){
@@ -122,73 +122,75 @@ class SimpleRssFeedReaderHelper {
 
 		$result = array();
 		foreach ($data as $id => $url) {
-      $url = trim($url);
-      if($url) {
-        $feed = self::getFile($url,$cacheTime,$subFolderName='feeds');
-  			$result[$id] = JFile::read($feed);
-      }
+			$url = trim($url);
+			if($url) {
+				$feed = self::getFile($url,$cacheTime,$subFolderName='feeds');
+				$result[$id] = JFile::read($feed);
+			}
 		}
 		return $result;
 	}
 
 	// Parse array of feeds
-	function parseFeeds($feeds){
+	function parseFeeds($feeds,$perFeedItems){
+		if(!isset($perFeedItems)){
+			$perFeedItems = 5;
+		}
+		
 		$feedContents = array();
+		
 		foreach($feeds as $key=>$feed){
-			libxml_use_internal_errors(true);
-			$xml = simplexml_load_string($feed);
+			if($key<$perFeedItems){
+				libxml_use_internal_errors(true);
+				$xml = simplexml_load_string($feed);
 
-			/*
-			 * If the feed didn't parse, generate a warning and skip it
-			 */
-			if ($xml === false) {
-				$msg = "Failed loading XML\n";
-				foreach(libxml_get_errors() as $error) {
-					$msg .= "\n" . $error->message;
+				/*
+				 * If the feed didn't parse, generate a warning and skip it
+				 */
+				if ($xml === false) {
+					$msg = "Failed loading XML...\n";
+					foreach(libxml_get_errors() as $error) {
+						$msg .= "\n" . $error->message;
+					}
+					JFactory::getApplication()->enqueueMessage($msg);
+					libxml_clear_errors();
+					continue;
 				}
-				JFactory::getApplication()->enqueueMessage($msg);
-				libxml_clear_errors();
-				continue;
-			}
 
-			$feedContents[$key] = new stdClass;
+				$feedContents[$key] = new stdClass;
 
-
-			if(is_object($xml) && $items = $xml->xpath("/rss/channel/item")) {
-				$feedContents[$key]->feedSubscribeUrl = $feed;
-				$feedContents[$key]->feedTitle = $xml->channel->title;
-				$feedContents[$key]->feedLink = $xml->channel->link;
-				$feedContents[$key]->feedPubDate = $xml->channel->pubDate;
-				$feedContents[$key]->feedDescription = $xml->channel->description;
-				foreach($items as $item){
-					$feedContents[$key]->feedItems[] = $item;
-				}
-			} elseif(is_object($xml) && $items = $xml->xpath("/*[local-name()='feed' and namespace-uri()='http://www.w3.org/2005/Atom'] /*[local-name()='entry' and namespace-uri()='http://www.w3.org/2005/Atom']")) {
-				$feedContents[$key]->feedSubscribeUrl = $feed;
-				$feedContents[$key]->feedTitle = (string)$xml->title;
-				$feedContents[$key]->feedLink = (string)$xml->link->attributes()->href;
-				$feedContents[$key]->feedPubDate = (string)$xml->updated;
-				$feedContents[$key]->feedDescription = (string)$xml->subtitle;
-				foreach ($items as $item) {
-					$tmp = new stdClass();
-					$tmp->title = (string)$item->title;
-					if($item->link->count() > 1)
-					{
-						foreach($item->link as $link)
-						{
-							if((string)$link->attributes()->rel == 'alternate') {
-								$tmp->link = (string)$link->attributes()->href;
+				if(is_object($xml) && $items = $xml->xpath("/rss/channel/item")) {
+					$feedContents[$key]->feedSubscribeUrl = $feed;
+					$feedContents[$key]->feedTitle = $xml->channel->title;
+					$feedContents[$key]->feedLink = $xml->channel->link;
+					$feedContents[$key]->feedPubDate = $xml->channel->pubDate;
+					$feedContents[$key]->feedDescription = $xml->channel->description;
+					foreach($items as $item){
+						$feedContents[$key]->feedItems[] = $item;
+					}
+				} elseif(is_object($xml) && $items = $xml->xpath("/*[local-name()='feed' and namespace-uri()='http://www.w3.org/2005/Atom'] /*[local-name()='entry' and namespace-uri()='http://www.w3.org/2005/Atom']")) {
+					$feedContents[$key]->feedSubscribeUrl = $feed;
+					$feedContents[$key]->feedTitle = (string)$xml->title;
+					$feedContents[$key]->feedLink = (string)$xml->link->attributes()->href;
+					$feedContents[$key]->feedPubDate = (string)$xml->updated;
+					$feedContents[$key]->feedDescription = (string)$xml->subtitle;
+					foreach ($items as $item) {
+						$tmp = new stdClass();
+						$tmp->title = (string)$item->title;
+						if($item->link->count() > 1){
+							foreach($item->link as $link){
+								if((string)$link->attributes()->rel == 'alternate') {
+									$tmp->link = (string)$link->attributes()->href;
+								}
 							}
+						} else {
+							$tmp->link = (string)$item->link->attributes()->href;
 						}
+						$tmp->pubDate = (string)$item->updated;
+						$tmp->description = (!empty($item->content)) ? $item->content:$item->summary;
+						$tmp->author = (string)$item->author->name;
+						$feedContents[$key]->feedItems[] = $tmp;
 					}
-					else
-					{
-						$tmp->link = (string)$item->link->attributes()->href;
-					}
-					$tmp->pubDate = (string)$item->updated;
-					$tmp->description = (!empty($item->content)) ? $item->content:$item->summary;
-					$tmp->author = (string)$item->author->name;
-					$feedContents[$key]->feedItems[] = $tmp;
 				}
 			}
 		}

@@ -31,7 +31,7 @@ $siteUrl  	= substr(JURI::base(), 0, -1);
 
 // Module parameters
 $moduleclass_sfx 				= $params->get('moduleclass_sfx','');
-$mod_template 						= $params->get('template','default');
+$mod_template 					= $params->get('template','default');
 $srfrFeeds 						= $params->get('srfrFeeds');
 $srfrFeedsArray 				= explode("\n",$srfrFeeds);
 $perFeedItems 					= $params->get('perFeedItems',5);
