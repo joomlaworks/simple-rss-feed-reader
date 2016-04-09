@@ -10,6 +10,7 @@
 .jwHeaderContainer {clear:both;font-weight:bold;font-size:12px;color:#369;margin:12px 0 4px;padding:0;background:#d5e7fa;border-bottom:2px solid #96b0cb;width:auto;}
 .jwHeaderContainer15 {clear:both;font-weight:bold;font-size:12px;color:#369;margin:0;padding:0;background:#d5e7fa;border-bottom:2px solid #96b0cb;float:left;width:100%;}
 .jwHeaderContent {padding:6px 8px;}
+.form-horizontal .span9 .controls textarea {width:96%!important;}
 @media all and (min-width:771px) {
 	.form-horizontal .span9 .control-label {width:30% !important;}
 	.form-horizontal .span9 .controls {margin-left:32% !important;}
