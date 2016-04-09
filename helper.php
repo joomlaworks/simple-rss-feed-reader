@@ -140,9 +140,7 @@ class SimpleRssFeedReaderHelper {
 				libxml_use_internal_errors(true);
 				$xml = simplexml_load_string($feed);
 
-				/*
-				 * If the feed didn't parse, generate a warning and skip it
-				 */
+				// If the feed didn't parse, display a warning and skip it
 				if ($xml === false) {
 					$msg = "Failed loading XML...\n";
 					foreach(libxml_get_errors() as $error) {

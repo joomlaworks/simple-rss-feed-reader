@@ -52,7 +52,7 @@ $feedsBlockPostLink				= $params->get('feedsBlockPostLink');
 $feedsBlockPostLinkURL			= $params->get('feedsBlockPostLinkURL');
 $feedsBlockPostLinkTitle		= $params->get('feedsBlockPostLinkTitle');
 $feedItemLinkRedirect			= $params->get('feedItemLinkRedirect',0);
-$srfrCacheTime					= $params->get('srfrCacheTime',30)*60;
+$srfrCacheTime					= $params->get('srfrCacheTime',30) * 60;
 $cacheLocation					= 'cache'.DS.$mod_name;
 
 // Includes
