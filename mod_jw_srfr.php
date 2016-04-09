@@ -1,10 +1,10 @@
 <?php
 /**
- * @version		3.3
- * @package		Simple RSS Feed Reader (module)
- * @author    	JoomlaWorks - http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
- * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @version    3.4
+ * @package    Simple RSS Feed Reader (module)
+ * @author     JoomlaWorks - http://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -12,8 +12,8 @@ defined('_JEXEC') or die('Restricted access');
 
 // JoomlaWorks reference parameters
 $mod_name               = "mod_jw_srfr";
-$mod_copyrights_start   = "\n\n<!-- JoomlaWorks \"Simple RSS Feed Reader\" Module (v3.3) starts here -->\n";
-$mod_copyrights_end     = "\n<!-- JoomlaWorks \"Simple RSS Feed Reader\" Module (v3.3) ends here -->\n\n";
+$mod_copyrights_start   = "\n\n<!-- JoomlaWorks \"Simple RSS Feed Reader\" Module (v3.4) starts here -->\n";
+$mod_copyrights_end     = "\n<!-- JoomlaWorks \"Simple RSS Feed Reader\" Module (v3.4) ends here -->\n\n";
 
 // Conventions
 if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
