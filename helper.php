@@ -91,7 +91,7 @@ class SimpleRssFeedReaderHelper {
 
 					// then resize and/or assign to variable
 					if($imageHandling==2){
-						$feedItem->feedImageSrc = 'http://ir0.mobify.com/'.$riWidth.'/'.$feedImage['src'];
+						$feedItem->feedImageSrc = 'https://ir0.mobify.com/'.$riWidth.'/'.$feedImage['src'];
 					} else {
 						$feedItem->feedImageSrc = $feedImage['src'];
 					}
