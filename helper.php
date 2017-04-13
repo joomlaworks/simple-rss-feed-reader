@@ -48,6 +48,7 @@ class SimpleRssFeedReaderHelper {
 					$feedElements[$key]->itemDateRSS 		= $item->pubDate;
 					$feedElements[$key]->itemDescription 	= $item->description;
 					$feedElements[$key]->feedImageSrc		= '';
+					$feedElements[$key]->feedImageEnclosure = $item->enclosure['url'];  //Image url can be in <enclosure url="....image url here.....">
 
 					$feedElements[$key]->feedTitle 			= self::wordLimiter($feed->feedTitle,10);
 					$feedElements[$key]->feedURL			= $feed->feedSubscribeUrl;
@@ -82,6 +83,17 @@ class SimpleRssFeedReaderHelper {
 			// Determine if an image reference exists in the feed description
 			if($imageHandling==1 || $imageHandling==2){
 				$feedImage = self::getFirstImage($feedItem->itemDescription);
+
+				//Image can be elsewhere!
+				$feedImageAlt =  array(
+						"src" => ($feedItem->feedImageEnclosure),
+						"ext" => 'jpg',
+						"tag" => '');
+
+				if(!isset($feedImage) || strlen($feedImage) === 0 )
+				{
+					$feedImage = $feedImageAlt;
+				}
 
 				// If it does, copy, resize and store it locally
 				if(isset($feedImage) && $feedImage['ext']){
@@ -155,6 +167,7 @@ class SimpleRssFeedReaderHelper {
 				$feedContents[$key]->feedLink = $xml->channel->link;
 				$feedContents[$key]->feedPubDate = $xml->channel->pubDate;
 				$feedContents[$key]->feedDescription = $xml->channel->description;
+
 				foreach($items as $item){
 					$feedContents[$key]->feedItems[] = $item;
 				}
