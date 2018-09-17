@@ -57,10 +57,12 @@
 				</field>
 				<field name="feedsBlockPostLinkURL" type="text" default="http://" label="MOD_JW_SRFR_CUSTOM_LINK_URL" description="" />
 				<field name="feedsBlockPostLinkTitle" type="text" default="" label="MOD_JW_SRFR_CUSTOM_LINK_TITLE" description="" />
+				<!--
 				<field name="feedItemLinkRedirect" type="radio" default="0" label="MOD_JW_SRFR_FEEDITEMLINKREDIR" description="MOD_JW_SRFR_FEEDITEMLINKREDIR_DESC">
 					<option value="0">MOD_JW_SRFR_NO</option>
 					<option value="1">MOD_JW_SRFR_YES</option>
 				</field>
+				-->
 				<field name="" type="header" default="Feed Caching Options" label="" description="" />
 				<field name="srfrCacheTime" type="text" default="30" label="MOD_JW_SRFR_CACHE_TIME_IN_MINUTES_FOR_FEED_CONTENT_AND_REMOTE_IMAGES" description="MOD_JW_SRFR_THE_TIME_BEFORE_THE_ACTUAL_REMOTE_CONTENT_BOTH_TEXT_AND_IMAGES_IS_RECACHED_THIS_CACHE_OPTION_IS_ALWAYS_ON" />
 			</fieldset>
