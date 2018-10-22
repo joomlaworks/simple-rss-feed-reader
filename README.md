@@ -30,7 +30,7 @@ The compact template is inspired by https://joomlareader.com
 
 
 ## DEMO
-Demo for "default" sub-template: https://demo.joomlaworks.net (right column)
+Demo for "default" sub-template: https://demo.joomlaworks.net (right column) or https://demo2.joomlaworks.net (right column)
 
 
 ## LEARN MORE
