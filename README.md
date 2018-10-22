@@ -1,12 +1,12 @@
 Simple RSS Feed Reader
 ======================
 
-Adding RSS/Atom syndicated content inside your Joomla! website is now super-easy and simple with the 'Simple RSS Feed Reader' module from JoomlaWorks. All you have to do is add a few feeds to the module parameters, publish the module in some position and that's it!
+Adding RSS/Atom syndicated content inside your Joomla website is now super-easy and simple with the 'Simple RSS Feed Reader' module from JoomlaWorks. All you have to do is add a few feeds to the module parameters, publish the module in some position and that's it!
 You can even publish multiple feeds at the same time (meaning in the same module instance) and have them display combined!
 
-The 'Simple RSS Feed Reader' module is based on the same feed parsing engine that powers JoomlaReader.com, the most popular Joomla! news aggregator in the Joomla! Community.
+The 'Simple RSS Feed Reader' module is based on the same feed parsing engine that powers JoomlaReader.com, the most popular Joomla news aggregator in the Joomla Community.
 
-The feeds are stored inside your Joomla! site's cache folder and refreshed in a specific time interval, which you set in the module's parameters. This feed cache is different to Joomla!'s cache, as you may need to have your site refreshed every 5 minutes, but have the feeds the module retrieves stored longer than 5 minutes.
+The feeds are stored inside your Joomla site's cache folder and refreshed in a specific time interval, which you set in the module's parameters. This feed cache is different to Joomla's cache, as you may need to have your site refreshed every 5 minutes, but have the feeds the module retrieves stored longer than 5 minutes.
 
 
 ## NOTABLE FEATURES
@@ -24,7 +24,7 @@ After you install the module, add one or more feed sources in the related box un
 
 
 ## STYLING
-The module installs with 2 generic templates (default and compact), which should be sufficient for most websites. If you want more control, you can simply override both the generated HTML and CSS, using MVC template overrides within your Joomla! template. Or you can create new folders with new module templates inside your template's /html/mod_jw_srfr/ folder and just select the new ones in the module's parameters.
+The module installs with 2 generic templates (default and compact), which should be sufficient for most websites. If you want more control, you can simply override both the generated HTML and CSS, using MVC template overrides within your Joomla template. Or you can create new folders with new module templates inside your template's /html/mod_jw_srfr/ folder and just select the new ones in the module's parameters.
 
 The compact template is inspired by https://joomlareader.com
 
