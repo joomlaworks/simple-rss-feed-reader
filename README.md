@@ -34,4 +34,4 @@ Demo for "default" sub-template: http://demo.joomlaworks.net (right column)
 
 
 ## LEARN MORE
-Visit the Simple RSS Feed Reader product page at: http://www.joomlaworks.net/extensions/free-premium/simple-rss-feed-reader
+Visit the Simple RSS Feed Reader product page at: https://www.joomlaworks.net/extensions/free-premium/simple-rss-feed-reader

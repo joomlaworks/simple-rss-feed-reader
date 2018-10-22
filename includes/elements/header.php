@@ -1,48 +1,42 @@
 <?php
 /**
- * @version    3.5
+ * @version    3.6.0
  * @package    Simple RSS Feed Reader (module)
- * @author     JoomlaWorks - http://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.
+ * @author     JoomlaWorks - https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
  * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
 defined('_JEXEC') or die ;
 
-require_once (dirname(__FILE__).'/base.php');
+require_once(dirname(__FILE__).'/base.php');
 
 class JWElementHeader extends JWElement
 {
-	public function fetchElement($name, $value, &$node, $control_name)
-	{
+    public function fetchElement($name, $value, &$node, $control_name)
+    {
+        $document = JFactory::getDocument();
+        $document->addStyleSheet(JURI::root(true).'/modules/mod_jw_srfr/includes/elements/header.css');
+        if (version_compare(JVERSION, '2.5.0', 'ge')) {
+            return '<div class="jwHeaderContainer"><div class="jwHeaderContent">'.JText::_($value).'</div><div class="jwHeaderClr"></div></div>';
+        } else {
+            return '<div class="jwHeaderContainer15"><div class="jwHeaderContent">'.JText::_($value).'</div><div class="jwHeaderClr"></div></div>';
+        }
+    }
 
-		$document = JFactory::getDocument();
-		$document->addStyleSheet(JURI::root(true).'/modules/mod_jw_srfr/includes/elements/header.css');
-		if (version_compare(JVERSION, '2.5.0', 'ge'))
-		{
-			return '<div class="jwHeaderContainer"><div class="jwHeaderContent">'.JText::_($value).'</div><div class="jwHeaderClr"></div></div>';
-		}
-		else
-		{
-			return '<div class="jwHeaderContainer15"><div class="jwHeaderContent">'.JText::_($value).'</div><div class="jwHeaderClr"></div></div>';
-		}
-
-	}
-
-	public function fetchTooltip($label, $description, &$node, $control_name, $name)
-	{
-		return NULL;
-	}
-
+    public function fetchTooltip($label, $description, &$node, $control_name, $name)
+    {
+        return null;
+    }
 }
 
 class JFormFieldHeader extends JWElementHeader
 {
-	var $type = 'header';
+    public $type = 'header';
 }
 
 class JElementHeader extends JWElementHeader
 {
-	var $_name = 'header';
+    public $_name = 'header';
 }

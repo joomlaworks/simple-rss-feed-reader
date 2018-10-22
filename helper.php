@@ -1,9 +1,9 @@
 <?php
 /**
- * @version    3.5
+ * @version    3.6.0
  * @package    Simple RSS Feed Reader (module)
- * @author     JoomlaWorks - http://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.
+ * @author     JoomlaWorks - https://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
  * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
@@ -22,9 +22,6 @@ class SimpleRssFeedReaderHelper
             2 - fetch and resize first image only and hide others
         */
 
-        // API
-        $mainframe = JFactory::getApplication();
-
         // Check if the cache folder exists
         $cacheFolderPath = JPATH_SITE.DS.$cacheLocation;
         if (file_exists($cacheFolderPath) && is_dir($cacheFolderPath)) {
@@ -37,85 +34,87 @@ class SimpleRssFeedReaderHelper
         $parsedFeeds = self::parseFeeds($feeds);
         $feedItemsArray = array();
 
-        foreach ($parsedFeeds as $feed) {
-            foreach ($feed->feedItems as $key=>$item) {
-                if ($key < $perFeedItems) {
-                    // Create an object to store feed elements
-                    $feedElements[$key] = new JObject;
+        if (is_array($parsedFeeds) && count($parsedFeeds)) {
+            foreach ($parsedFeeds as $feed) {
+                foreach ($feed->feedItems as $key=>$item) {
+                    if ($key < $perFeedItems) {
+                        // Create an object to store feed elements
+                        $feedElements[$key] = new JObject;
 
-                    $feedElements[$key]->itemTitle            = $item->title;
-                    $feedElements[$key]->itemLink            = $item->link;
-                    $feedElements[$key]->itemDate            = strftime($dateFormat, strtotime($item->pubDate));
-                    $feedElements[$key]->itemDateRSS        = $item->pubDate;
-                    $feedElements[$key]->itemDescription    = $item->description;
-                    $feedElements[$key]->feedImageSrc        = '';
+                        $feedElements[$key]->itemTitle          = $item->title;
+                        $feedElements[$key]->itemLink           = $item->link;
+                        $feedElements[$key]->itemDate           = strftime($dateFormat, strtotime($item->pubDate));
+                        $feedElements[$key]->itemDateRSS        = $item->pubDate;
+                        $feedElements[$key]->itemDescription    = $item->description;
+                        $feedElements[$key]->feedImageSrc       = '';
 
-                    $feedElements[$key]->feedTitle            = self::wordLimiter($feed->feedTitle, 10);
-                    $feedElements[$key]->feedURL            = $feed->feedSubscribeUrl;
-                    $feedElements[$key]->siteURL            = $feed->feedLink;
+                        $feedElements[$key]->feedTitle          = self::wordLimiter($feed->feedTitle, 10);
+                        $feedElements[$key]->feedURL            = $feed->feedSubscribeUrl;
+                        $feedElements[$key]->siteURL            = $feed->feedLink;
 
-                    // Give each feed an index based on date
-                    $itemDateIndex = strftime('%Y%m%d%H%M', strtotime($item->pubDate)).'_'.$key;
+                        // Give each feed an index based on date
+                        $itemDateIndex = strftime('%Y%m%d%H%M', strtotime($item->pubDate)).'_'.$key;
 
-                    // Pass all feed objects to an array
-                    $feedItemsArray[$itemDateIndex] = $feedElements[$key];
+                        // Pass all feed objects to an array
+                        $feedItemsArray[$itemDateIndex] = $feedElements[$key];
+                    }
                 }
             }
-        }
 
-        // Reverse sort by key (=feed date)
-        krsort($feedItemsArray);
+            // Reverse sort by key (=feed date)
+            krsort($feedItemsArray);
 
-        // Limit output
-        $outputArray = array();
-        $counter = 0;
-        foreach ($feedItemsArray as $feedItem) {
-            if ($counter>=$totalFeedItems) {
-                continue;
-            }
+            // Limit output
+            $outputArray = array();
+            $counter = 0;
+            foreach ($feedItemsArray as $feedItem) {
+                if ($counter>=$totalFeedItems) {
+                    continue;
+                }
 
-            // Clean up the feed title
-            $feedItem->itemTitle = trim(htmlentities($feedItem->itemTitle, ENT_QUOTES, 'utf-8'));
+                // Clean up the feed title
+                $feedItem->itemTitle = trim(htmlentities($feedItem->itemTitle, ENT_QUOTES, 'utf-8'));
 
-            // URL Redirect
-            if (isset($feedItemLinkRedirect) && $feedItemLinkRedirect) {
-                $feedItem->itemLink = JURI::root(true).'/modules/mod_jw_srfr/redir.php?url='.urlencode($feedItem->itemLink);
-            }
+                // URL Redirect
+                if (isset($feedItemLinkRedirect) && $feedItemLinkRedirect) {
+                    $feedItem->itemLink = JURI::root(true).'/modules/mod_jw_srfr/redir.php?url='.urlencode($feedItem->itemLink);
+                }
 
-            // Determine if an image reference exists in the feed description
-            if ($imageHandling==1 || $imageHandling==2) {
-                $feedImage = self::getFirstImage($feedItem->itemDescription);
+                // Determine if an image reference exists in the feed description
+                if ($imageHandling==1 || $imageHandling==2) {
+                    $feedImage = self::getFirstImage($feedItem->itemDescription);
 
-                // If it does, copy, resize and store it locally
-                if (isset($feedImage) && $feedImage['ext']) {
+                    // If it does, copy, resize and store it locally
+                    if (isset($feedImage) && $feedImage['ext']) {
 
                     // first remove the img tag from the description
-                    $feedItem->itemDescription = str_replace($feedImage['tag'], '', trim($feedItem->itemDescription));
+                        $feedItem->itemDescription = str_replace($feedImage['tag'], '', trim($feedItem->itemDescription));
 
-                    // then resize and/or assign to variable
-                    if ($imageHandling==2) {
-                        $feedItem->feedImageSrc = 'https://ir0.mobify.com/'.$riWidth.'/'.$feedImage['src'];
+                        // then resize and/or assign to variable
+                        if ($imageHandling==2) {
+                            $feedItem->feedImageSrc = 'https://ir0.mobify.com/'.$riWidth.'/'.$feedImage['src'];
+                        } else {
+                            $feedItem->feedImageSrc = $feedImage['src'];
+                        }
                     } else {
-                        $feedItem->feedImageSrc = $feedImage['src'];
+                        $feedItem->feedImageSrc = '';
                     }
-                } else {
-                    $feedItem->feedImageSrc = '';
                 }
+
+                // Strip out images from the description
+                $feedItem->itemDescription = preg_replace("#<img.+?>#s", "", $feedItem->itemDescription);
+
+                // Word limit
+                if ($wordLimit) {
+                    $feedItem->itemDescription = self::wordLimiter($feedItem->itemDescription, $wordLimit);
+                }
+
+                $outputArray[] = $feedItem;
+                $counter++;
             }
 
-            // Strip out images from the description
-            $feedItem->itemDescription = preg_replace("#<img.+?>#s", "", $feedItem->itemDescription);
-
-            // Word limit
-            if ($wordLimit) {
-                $feedItem->itemDescription = self::wordLimiter($feedItem->itemDescription, $wordLimit);
-            }
-
-            $outputArray[] = $feedItem;
-            $counter++;
+            return $outputArray;
         }
-
-        return $outputArray;
     }
 
     // Get array of feeds
@@ -170,7 +169,7 @@ class SimpleRssFeedReaderHelper
                 $feedContents[$key]->feedPubDate = (string)$xml->updated;
                 $feedContents[$key]->feedDescription = (string)$xml->subtitle;
                 foreach ($items as $item) {
-                    $tmp = new stdClass();
+                    $tmp = new stdClass;
                     $tmp->title = (string)$item->title;
                     if ($item->link->count() > 1) {
                         foreach ($item->link as $link) {
@@ -234,7 +233,7 @@ class SimpleRssFeedReaderHelper
     // Get remote file
     public function getFile($url, $cacheTime=3600, $subFolderName='', $extensionName='mod_jw_srfr')
     {
-        $userAgent = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36';
+        $userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36';
 
         jimport('joomla.filesystem.file');
 
