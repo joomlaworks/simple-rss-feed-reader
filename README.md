@@ -26,11 +26,11 @@ After you install the module, add one or more feed sources in the related box un
 ## STYLING
 The module installs with 2 generic templates (default and compact), which should be sufficient for most websites. If you want more control, you can simply override both the generated HTML and CSS, using MVC template overrides within your Joomla! template. Or you can create new folders with new module templates inside your template's /html/mod_jw_srfr/ folder and just select the new ones in the module's parameters.
 
-The compact template is inspired by http://joomlareader.com
+The compact template is inspired by https://joomlareader.com
 
 
 ## DEMO
-Demo for "default" sub-template: http://demo.joomlaworks.net (right column)
+Demo for "default" sub-template: https://demo.joomlaworks.net (right column)
 
 
 ## LEARN MORE
