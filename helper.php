@@ -1,6 +1,6 @@
 <?php
 /**
- * @version    3.6.0
+ * @version    3.6.1
  * @package    Simple RSS Feed Reader (module)
  * @author     JoomlaWorks - https://www.joomlaworks.net
  * @copyright  Copyright (c) 2006 - 2018 JoomlaWorks Ltd. All rights reserved.
@@ -42,7 +42,7 @@ class SimpleRssFeedReaderHelper
                         $feedElements[$key] = new JObject;
 
                         $feedElements[$key]->itemTitle          = $item->title;
-                        $feedElements[$key]->itemLink           = $item->link;
+                        $feedElements[$key]->itemLink           = trim($item->link);
                         $feedElements[$key]->itemDate           = strftime($dateFormat, strtotime($item->pubDate));
                         $feedElements[$key]->itemDateRSS        = $item->pubDate;
                         $feedElements[$key]->itemDescription    = $item->description;
