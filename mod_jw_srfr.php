@@ -1,9 +1,9 @@
 <?php
 /**
- * @version    3.7.0
+ * @version    3.8.0
  * @package    Simple RSS Feed Reader (module)
  * @author     JoomlaWorks - https://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2019 JoomlaWorks Ltd. All rights reserved.
+ * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
  * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
@@ -12,8 +12,8 @@ defined('_JEXEC') or die('Restricted access');
 
 // JoomlaWorks reference parameters
 $mod_name             = "mod_jw_srfr";
-$mod_copyrights_start = "\n\n<!-- JoomlaWorks \"Simple RSS Feed Reader\" Module (v3.7.0) starts here -->\n";
-$mod_copyrights_end   = "\n<!-- JoomlaWorks \"Simple RSS Feed Reader\" Module (v3.7.0) ends here -->\n\n";
+$mod_copyrights_start = "\n\n<!-- JoomlaWorks \"Simple RSS Feed Reader\" Module (v3.8.0) starts here -->\n";
+$mod_copyrights_end   = "\n<!-- JoomlaWorks \"Simple RSS Feed Reader\" Module (v3.8.0) ends here -->\n\n";
 
 // Conventions
 if (!defined('DS')) {

@@ -4,10 +4,10 @@
 	<author>JoomlaWorks</author>
 	<authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
 	<authorUrl>www.joomlaworks.net</authorUrl>
-	<copyright>Copyright (c) 2006 - 2019 JoomlaWorks Ltd. All rights reserved.</copyright>
-	<creationDate>February 2nd, 2019</creationDate>
+	<copyright>Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.</copyright>
+	<creationDate>March 29th, 2020</creationDate>
 	<license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
-	<version>3.7.0</version>
+	<version>3.8.0</version>
 	<description>MOD_JW_SRFR_SIMPLE_RSS_FEED_READER_MODULE_BY_JOOMLAWORKS</description>
 	<config>
 		<fields name="params">
