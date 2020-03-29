@@ -233,9 +233,11 @@ class SimpleRssFeedReaderHelper
     // Get remote file
     public function getFile($url, $cacheTime=3600, $subFolderName='', $extensionName='mod_jw_srfr')
     {
-        $userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36';
-
         jimport('joomla.filesystem.file');
+        
+        // Set a user agent
+        $userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36';
+        $streamContext = stream_context_set_default(array('http' => array('user_agent' => '')));
 
         // Check cache folder
         if ($subFolderName) {
@@ -268,20 +270,12 @@ class SimpleRssFeedReaderHelper
             $result = $tmpFile;
         } else {
             // Get file
+            $feedOutput = '';
             if (substr($url, 0, 4)=="http") {
                 // remote file
                 if (ini_get('allow_url_fopen')) {
-                    // set user agent
-                    stream_context_get_default(array('http' => array('user_agent' => $userAgent)));
-
                     // file_get_contents
-                    $fgcOutput = JFile::read($url);
-
-                    // cleanup the content received
-                    $fgcOutput = preg_replace("#(\n|\r|\s\s+|<!--(.*?)-->)#s", "", $fgcOutput);
-                    $fgcOutput = preg_replace("#(\t)#s", " ", $fgcOutput);
-
-                    JFile::write($tmpFile, $fgcOutput);
+                    $feedOutput = file_get_contents($url);
                 } elseif (in_array('curl', get_loaded_extensions())) {
                     // cURL
                     $ch = curl_init();
@@ -290,20 +284,14 @@ class SimpleRssFeedReaderHelper
                     curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
                     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                    $chOutput = curl_exec($ch);
+                    $feedOutput = curl_exec($ch);
                     curl_close($ch);
-                    JFile::write($tmpFile, $chOutput);
                 } else {
-                    // set user agent
-                    stream_context_get_default(array('http' => array('user_agent' => $userAgent)));
-
                     // fsockopen
                     $readURL = parse_url($url);
                     $relativePath = (isset($readURL['query'])) ? $readURL['path']."?".$readURL['query'] : $readURL['path'];
                     $fp = fsockopen($readURL['host'], 80, $errno, $errstr, 5);
-                    if (!$fp) {
-                        JFile::write($tmpFile, '');
-                    } else {
+                    if ($fp) {
                         $out = "GET ".$relativePath." HTTP/1.1\r\n";
                         $out .= "Host: ".$readURL['host']."\r\n";
                         $out .= "Connection: Close\r\n\r\n";
@@ -317,13 +305,15 @@ class SimpleRssFeedReaderHelper
                             $body .= fgets($fp, 128);
                         } // get the actual content
                         fclose($fp);
-                        JFile::write($tmpFile, $body);
+                        $feedOutput = $body;
                     }
                 }
-
+                
+                // Cleanup the content received
+                $feedOutput = preg_replace("#(\r\n|\n|\r|\t|\s+|<!--(.*?)-->)#s", " ", $feedOutput);
+                JFile::write($tmpFile, $feedOutput);
                 $result = $tmpFile;
             } else {
-
                 // local file
                 $result = $url;
             }
