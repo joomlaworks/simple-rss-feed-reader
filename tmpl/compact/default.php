@@ -3,7 +3,7 @@
  * @version    3.8.0
  * @package    Simple RSS Feed Reader (module)
  * @author     JoomlaWorks - https://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2020 JoomlaWorks Ltd. All rights reserved.
+ * @copyright  Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.
  * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
