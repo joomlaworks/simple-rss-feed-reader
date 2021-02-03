@@ -12,7 +12,7 @@ defined('_JEXEC') or die('Restricted access');
 
 class SimpleRssFeedReaderHelper
 {
-    public function getFeeds($feedsArray, $totalFeedItems, $perFeedItems, $feedTimeout, $dateFormat, $wordLimit, $cacheLocation, $cacheTime, $imageHandling, $riWidth, $feedItemLinkRedirect)
+    public function getFeeds($feedsArray, $totalFeedItems, $perFeedItems, $feedTimeout, $dateFormat, $wordLimit, $cacheLocation, $cacheTime, $imageHandling, $riWidth)
     {
 
         /*
@@ -75,11 +75,6 @@ class SimpleRssFeedReaderHelper
                 // Clean up the feed title
                 $feedItem->itemTitle = trim(htmlentities($feedItem->itemTitle, ENT_QUOTES, 'utf-8'));
 
-                // URL Redirect
-                if (isset($feedItemLinkRedirect) && $feedItemLinkRedirect) {
-                    $feedItem->itemLink = JURI::root(true).'/modules/mod_jw_srfr/redir.php?url='.urlencode($feedItem->itemLink);
-                }
-
                 // Determine if an image reference exists in the feed description
                 if ($imageHandling==1 || $imageHandling==2) {
                     $feedImage = self::getFirstImage($feedItem->itemDescription);
@@ -92,7 +87,7 @@ class SimpleRssFeedReaderHelper
 
                         // then resize and/or assign to variable
                         if ($imageHandling==2) {
-                            $feedItem->feedImageSrc = 'https://ir0.mobify.com/'.$riWidth.'/'.$feedImage['src'];
+                            $feedItem->feedImageSrc = 'https://images.weserv.nl/?url='.$feedImage['src'].'&w='.$riWidth;
                         } else {
                             $feedItem->feedImageSrc = $feedImage['src'];
                         }

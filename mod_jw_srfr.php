@@ -52,7 +52,6 @@ $feedsBlockPostText           = $params->get('feedsBlockPostText');
 $feedsBlockPostLink           = $params->get('feedsBlockPostLink');
 $feedsBlockPostLinkURL        = $params->get('feedsBlockPostLinkURL');
 $feedsBlockPostLinkTitle      = $params->get('feedsBlockPostLinkTitle');
-$feedItemLinkRedirect         = 0; //$params->get('feedItemLinkRedirect',0);
 $srfrCacheTime                = $params->get('srfrCacheTime', 30) * 60;
 $cacheLocation                = 'cache'.DS.$mod_name;
 
@@ -61,7 +60,7 @@ require_once(dirname(__FILE__).DS.'helper.php');
 
 // Fetch content
 $srfr = new SimpleRssFeedReaderHelper;
-$output = $srfr->getFeeds($srfrFeedsArray, $totalFeedItems, $perFeedItems, $feedTimeout, $feedItemDateFormat, $feedItemDescriptionWordlimit, $cacheLocation, $srfrCacheTime, $feedItemImageHandling, $feedItemImageResizeWidth, $feedItemLinkRedirect);
+$output = $srfr->getFeeds($srfrFeedsArray, $totalFeedItems, $perFeedItems, $feedTimeout, $feedItemDateFormat, $feedItemDescriptionWordlimit, $cacheLocation, $srfrCacheTime, $feedItemImageHandling, $feedItemImageResizeWidth);
 
 // Output content with template
 echo $mod_copyrights_start;
