@@ -11,8 +11,18 @@
 defined('_JEXEC') or die('Restricted access');
 
 /* Here we call the stylesheet template.css from a folder called 'css' and located at the same directory with this template file. */
-$filePath = JURI::root(true).str_replace(JPATH_SITE,'',dirname(__FILE__));
-$document->addStyleSheet($filePath.'/css/template.css');
+$filePath = JURI::root(true).str_replace(JPATH_SITE, '', dirname(__FILE__));
+
+if (version_compare(JVERSION, '1.6', 'ge')) {
+    $document->addStyleSheet($filePath.'/css/template.css?v=3.8.0');
+} else {
+    $app = JFactory::getApplication();
+    if ($app->getCfg('caching')) {
+        echo '<link href="'.$filePath.'/css/template.css?v=3.8.0" rel="stylesheet" />';
+    } else {
+        $document->addStyleSheet($filePath.'/css/template.css?v=3.8.0');
+    }
+}
 
 ?>
 <div class="srfrContainer <?php echo $moduleclass_sfx; ?>">
