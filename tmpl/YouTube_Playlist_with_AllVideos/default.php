@@ -16,6 +16,7 @@ defined('_JEXEC') or die('Restricted access');
     <p class="srfrPreText"><?php echo $feedsBlockPreText; ?></p>
     <?php endif; ?>
 
+    <?php if (isset($output) && count($output)): ?>
     <ul class="srfrList">
         <?php foreach($output as $key=>$feed): ?>
         <li class="srfrRow<?php echo ($key%2) ? ' srfrRowIsEven' : ' srfrRowIsOdd'; ?>">
@@ -63,6 +64,7 @@ defined('_JEXEC') or die('Restricted access');
         </li>
         <?php endforeach; ?>
     </ul>
+    <?php endif; ?>
 
     <?php if($feedsBlockPostText): ?>
     <p class="srfrPostText"><?php echo $feedsBlockPostText; ?></p>

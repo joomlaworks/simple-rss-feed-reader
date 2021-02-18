@@ -31,6 +31,7 @@ if (version_compare(JVERSION, '1.6', 'ge')) {
     <p class="srfrPreText"><?php echo $feedsBlockPreText; ?></p>
     <?php endif; ?>
 
+    <?php if (isset($output) && count($output)): ?>
     <ul class="srfrList">
         <?php foreach($output as $key=>$feed): ?>
         <li class="srfrRow<?php echo ($key%2) ? ' srfrRowIsEven' : ' srfrRowIsOdd'; ?>">
@@ -87,6 +88,7 @@ if (version_compare(JVERSION, '1.6', 'ge')) {
         </li>
         <?php endforeach; ?>
     </ul>
+    <?php endif; ?>
 
     <?php if($feedsBlockPostText): ?>
     <p class="srfrPostText"><?php echo $feedsBlockPostText; ?></p>
