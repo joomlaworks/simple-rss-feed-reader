@@ -229,10 +229,10 @@ class SimpleRssFeedReaderHelper
     public function getFile($url, $cacheTime=3600, $subFolderName='', $extensionName='mod_jw_srfr')
     {
         jimport('joomla.filesystem.file');
-        
+
         // Set a user agent
-        $userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36';
-        $streamContext = stream_context_set_default(array('http' => array('user_agent' => '')));
+        $userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36';
+        $defaultStreamContext = stream_context_set_default(array('http' => array('user_agent' => $userAgent)));
 
         // Check cache folder
         if ($subFolderName) {
@@ -303,7 +303,7 @@ class SimpleRssFeedReaderHelper
                         $feedOutput = $body;
                     }
                 }
-                
+
                 // Cleanup the content received
                 $feedOutput = preg_replace("#(\r\n|\n|\r|\t|\s+|<!--(.*?)-->)#s", " ", $feedOutput);
                 JFile::write($tmpFile, $feedOutput);
