@@ -209,7 +209,7 @@ class SimpleRssFeedReaderHelper
             // Entire <img> tag
             $img['tag'] = $matches[0][0];
             // Image src
-            if (preg_match("#src=\".+?\"#s", $img['tag'], $imgSrc)) {
+            if (preg_match("#src=(\"|').+?(\"|')#s", $img['tag'], $imgSrc)) {
                 $img['src'] = str_replace('src="', '', $imgSrc[0]);
                 $img['src'] = str_replace('"', '', $img['src']);
             } else {
