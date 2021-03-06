@@ -210,13 +210,13 @@ class SimpleRssFeedReaderHelper
             $img['tag'] = $matches[0][0];
             // Image src
             if (preg_match("#src=(\"|').+?(\"|')#s", $img['tag'], $imgSrc)) {
-                $img['src'] = str_replace('src="', '', $imgSrc[0]);
-                $img['src'] = str_replace('"', '', $img['src']);
+                $img['src'] = str_replace(['src="', 'src=\''], '', $imgSrc[0]);
+                $img['src'] = str_replace(['"', '\''], '', $img['src']);
             } else {
                 $img['src'] = false;
             }
             // Is this a real content image?
-            if (preg_match("#\.(jpg|jpeg|png|gif|bmp)#s", strtolower($img['src']), $imgExt)) {
+            if (preg_match("#\.(jpg|jpeg|png|gif)#is", $img['src'], $imgExt)) {
                 $img['ext'] = true;
             } else {
                 $img['ext'] = false;
