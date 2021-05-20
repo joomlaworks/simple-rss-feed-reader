@@ -1,6 +1,6 @@
 <?php
 /**
- * @version    3.9.0
+ * @version    3.10.0
  * @package    Simple RSS Feed Reader (module)
  * @author     JoomlaWorks - https://www.joomlaworks.net
  * @copyright  Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.

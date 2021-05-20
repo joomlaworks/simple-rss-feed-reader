@@ -5,9 +5,9 @@
 	<authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
 	<authorUrl>www.joomlaworks.net</authorUrl>
 	<copyright>Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.</copyright>
-	<creationDate>March 6th, 2021</creationDate>
+	<creationDate>May 20th, 2021</creationDate>
 	<license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
-	<version>3.9.0</version>
+	<version>3.10.0</version>
 	<description>MOD_JW_SRFR_SIMPLE_RSS_FEED_READER_MODULE_BY_JOOMLAWORKS</description>
 	<config>
 		<fields name="params">
@@ -76,6 +76,7 @@
 		<folder>includes</folder>
 		<folder>tmpl</folder>
 	</files>
+	<scriptfile>script.php</scriptfile>
 	<languages>
 		<language tag="en-GB">language/en-GB/en-GB.mod_jw_srfr.ini</language>
 		<language tag="en-GB">language/en-GB/en-GB.mod_jw_srfr.sys.ini</language>
