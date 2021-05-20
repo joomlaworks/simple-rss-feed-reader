@@ -72,7 +72,6 @@
 	<files>
 		<filename module="mod_jw_srfr">mod_jw_srfr.php</filename>
 		<filename>helper.php</filename>
-		<filename>redir.php</filename>
 		<folder>includes</folder>
 		<folder>tmpl</folder>
 	</files>
