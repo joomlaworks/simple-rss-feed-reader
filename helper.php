@@ -82,7 +82,7 @@ class SimpleRssFeedReaderHelper
                     // If it does, copy, resize and store it locally
                     if (isset($feedImage) && $feedImage['ext']) {
 
-                    // first remove the img tag from the description
+                        // first remove the img tag from the description
                         $feedItem->itemDescription = str_replace($feedImage['tag'], '', trim($feedItem->itemDescription));
 
                         // then resize and/or assign to variable
