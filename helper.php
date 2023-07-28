@@ -37,10 +37,10 @@ class SimpleRssFeedReaderHelper
         if (is_array($parsedFeeds) && count($parsedFeeds)) {
             foreach ($parsedFeeds as $feed) {
                 $feedElements = [];
-                foreach ($feed->feedItems as $key=>$item) {
+                foreach ($feed->feedItems as $key => $item) {
                     if ($key < $perFeedItems) {
                         // Create an object to store feed elements
-                        $feedElements[$key] = new JObject;
+                        $feedElements[$key] = new stdClass();
 
                         $feedElements[$key]->itemTitle          = $item->title;
                         $feedElements[$key]->itemLink           = trim($item->link);
@@ -132,7 +132,7 @@ class SimpleRssFeedReaderHelper
     public function parseFeeds($feeds)
     {
         $feedContents = array();
-        foreach ($feeds as $key=>$feed) {
+        foreach ($feeds as $key => $feed) {
             libxml_use_internal_errors(true);
             $xml = simplexml_load_string($feed);
 
@@ -147,7 +147,7 @@ class SimpleRssFeedReaderHelper
                 continue;
             }
 
-            $feedContents[$key] = new stdClass;
+            $feedContents[$key] = new stdClass();
 
             if (is_object($xml) && $items = $xml->xpath("/rss/channel/item")) {
                 $feedContents[$key]->feedSubscribeUrl = $feed;
@@ -165,7 +165,7 @@ class SimpleRssFeedReaderHelper
                 $feedContents[$key]->feedPubDate = (string)$xml->updated;
                 $feedContents[$key]->feedDescription = (string)$xml->subtitle;
                 foreach ($items as $item) {
-                    $tmp = new stdClass;
+                    $tmp = new stdClass();
                     $tmp->title = (string)$item->title;
                     if ($item->link->count() > 1) {
                         foreach ($item->link as $link) {
@@ -177,7 +177,7 @@ class SimpleRssFeedReaderHelper
                         $tmp->link = (string)$item->link->attributes()->href;
                     }
                     $tmp->pubDate = (string)$item->updated;
-                    $tmp->description = (!empty($item->content)) ? $item->content:$item->summary;
+                    $tmp->description = (!empty($item->content)) ? $item->content : $item->summary;
                     $tmp->author = (string)$item->author->name;
                     $feedContents[$key]->feedItems[] = $tmp;
                 }
@@ -231,9 +231,17 @@ class SimpleRssFeedReaderHelper
     {
         jimport('joomla.filesystem.file');
 
-        // Set a user agent
+        // Stream context defaults
         $userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36';
-        $defaultStreamContext = stream_context_set_default(array('http' => array('user_agent' => $userAgent)));
+        $defaultStreamContext = stream_context_set_default([
+            'http' => [
+                'user_agent' => $userAgent
+            ],
+            "ssl" => [
+                "verify_peer" => false,
+                "verify_peer_name" => false
+            ]
+        ]);
 
         // Check cache folder
         if ($subFolderName) {
