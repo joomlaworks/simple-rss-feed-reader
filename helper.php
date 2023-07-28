@@ -232,7 +232,7 @@ class SimpleRssFeedReaderHelper
         jimport('joomla.filesystem.file');
 
         // Set a user agent
-        $userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36';
+        $userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36';
         $defaultStreamContext = stream_context_set_default(array('http' => array('user_agent' => $userAgent)));
 
         // Check cache folder
