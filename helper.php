@@ -36,6 +36,7 @@ class SimpleRssFeedReaderHelper
 
         if (is_array($parsedFeeds) && count($parsedFeeds)) {
             foreach ($parsedFeeds as $feed) {
+                $feedElements = [];
                 foreach ($feed->feedItems as $key=>$item) {
                     if ($key < $perFeedItems) {
                         // Create an object to store feed elements
@@ -53,7 +54,7 @@ class SimpleRssFeedReaderHelper
                         $feedElements[$key]->siteURL            = $feed->feedLink;
 
                         // Give each feed an index based on date
-                        $itemDateIndex = strftime('%Y%m%d%H%M', strtotime($item->pubDate)).'_'.$key;
+                        $itemDateIndex = strftime('%Y%m%d%H%M%S', strtotime($item->pubDate)).'_'.$key;
 
                         // Pass all feed objects to an array
                         $feedItemsArray[$itemDateIndex] = $feedElements[$key];
