@@ -46,5 +46,3 @@ Demo for "default" sub-template: [https://demo.joomlaworks.net](https://demo.joo
 
 ## LEARN MORE
 Visit the "Simple RSS Feed Reader" product page at: [https://www.joomlaworks.net/extensions/free/simple-rss-feed-reader](https://www.joomlaworks.net/extensions/free/simple-rss-feed-reader)
-
-Last update: May 25th, 2021 - Version 3.9.0 [stable]

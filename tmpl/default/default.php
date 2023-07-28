@@ -1,9 +1,9 @@
 <?php
 /**
- * @version    3.9.0
+ * @version    4.0
  * @package    Simple RSS Feed Reader (module)
  * @author     JoomlaWorks - https://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.
+ * @copyright  Copyright (c) 2006 - 2023 JoomlaWorks Ltd. All rights reserved.
  * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
@@ -14,13 +14,13 @@ defined('_JEXEC') or die('Restricted access');
 $filePath = JURI::root(true).str_replace(JPATH_SITE, '', dirname(__FILE__));
 
 if (version_compare(JVERSION, '1.6', 'ge')) {
-    $document->addStyleSheet($filePath.'/css/template.css?v=3.9.0');
+    $document->addStyleSheet($filePath.'/css/template.css?v=4.0');
 } else {
     $app = JFactory::getApplication();
     if ($app->getCfg('caching')) {
-        echo '<link href="'.$filePath.'/css/template.css?v=3.9.0" rel="stylesheet" />';
+        echo '<link href="'.$filePath.'/css/template.css?v=4.0" rel="stylesheet" />';
     } else {
-        $document->addStyleSheet($filePath.'/css/template.css?v=3.9.0');
+        $document->addStyleSheet($filePath.'/css/template.css?v=4.0');
     }
 }
 
