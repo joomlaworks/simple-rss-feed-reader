@@ -244,7 +244,7 @@ class SimpleRssFeedReaderHelper
         jimport('joomla.filesystem.file');
 
         // Stream context defaults
-        $userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36';
+        $userAgent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36';
         $defaultStreamContext = stream_context_set_default([
             'http' => [
                 'user_agent' => $userAgent
@@ -289,11 +289,8 @@ class SimpleRssFeedReaderHelper
             $feedOutput = '';
             if (substr($url, 0, 4) == "http") {
                 // remote file
-                if (ini_get('allow_url_fopen')) {
-                    // file_get_contents
-                    $feedOutput = file_get_contents($url);
-                } elseif (in_array('curl', get_loaded_extensions())) {
-                    // cURL
+                if (in_array('curl', get_loaded_extensions())) {
+                    // cURL (preferred)
                     $ch = curl_init();
                     curl_setopt($ch, CURLOPT_URL, $url);
                     curl_setopt($ch, CURLOPT_HEADER, false);
@@ -302,6 +299,9 @@ class SimpleRssFeedReaderHelper
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                     $feedOutput = curl_exec($ch);
                     curl_close($ch);
+                } elseif (ini_get('allow_url_fopen')) {
+                    // file_get_contents
+                    $feedOutput = file_get_contents($url);
                 } else {
                     // fsockopen
                     $readURL = parse_url($url);
