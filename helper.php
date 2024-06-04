@@ -3,7 +3,7 @@
  * @version    4.0
  * @package    Simple RSS Feed Reader (module)
  * @author     JoomlaWorks - https://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.
+ * @copyright  Copyright (c) 2006 - 2024 JoomlaWorks Ltd. All rights reserved.
  * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
@@ -23,7 +23,7 @@ class SimpleRssFeedReaderHelper
         */
 
         // Check if the cache folder exists
-        $cacheFolderPath = JPATH_SITE.DS.$cacheLocation;
+        $cacheFolderPath = JPATH_SITE.'/'.$cacheLocation;
         if (file_exists($cacheFolderPath) && is_dir($cacheFolderPath)) {
             // all OK
         } else {
@@ -69,7 +69,7 @@ class SimpleRssFeedReaderHelper
             $outputArray = array();
             $counter = 0;
             foreach ($feedItemsArray as $feedItem) {
-                if ($counter>=$totalFeedItems) {
+                if ($counter >= $totalFeedItems) {
                     continue;
                 }
 
@@ -77,7 +77,7 @@ class SimpleRssFeedReaderHelper
                 $feedItem->itemTitle = trim(htmlentities($feedItem->itemTitle, ENT_QUOTES, 'utf-8'));
 
                 // Determine if an image reference exists in the feed description
-                if ($imageHandling==1 || $imageHandling==2) {
+                if ($imageHandling == 1 || $imageHandling == 2) {
                     $feedImage = self::getFirstImage($feedItem->itemDescription);
 
                     // If it does, copy, resize and store it locally
@@ -87,7 +87,7 @@ class SimpleRssFeedReaderHelper
                         $feedItem->itemDescription = str_replace($feedImage['tag'], '', trim($feedItem->itemDescription));
 
                         // then resize and/or assign to variable
-                        if ($imageHandling==2) {
+                        if ($imageHandling == 2) {
                             $feedItem->feedImageSrc = 'https://images.weserv.nl/?url='.$feedImage['src'].'&w='.$riWidth;
                         } else {
                             $feedItem->feedImageSrc = $feedImage['src'];
@@ -121,7 +121,7 @@ class SimpleRssFeedReaderHelper
         foreach ($data as $id => $url) {
             $url = trim($url);
             if ($url) {
-                $feed = self::getFile($url, $cacheTime, $subFolderName='feeds');
+                $feed = self::getFile($url, $cacheTime, $subFolderName = 'feeds');
                 $result[$id] = JFile::read($feed);
             }
         }
@@ -187,7 +187,7 @@ class SimpleRssFeedReaderHelper
     }
 
     // Word Limiter
-    public function wordLimiter($str, $limit=100, $end_char='[&#8230;]')
+    public function wordLimiter($str, $limit = 100, $end_char = '[&#8230;]')
     {
         if (trim($str) == '') {
             return $str;
@@ -227,7 +227,7 @@ class SimpleRssFeedReaderHelper
     }
 
     // Get remote file
-    public function getFile($url, $cacheTime=3600, $subFolderName='', $extensionName='mod_jw_srfr')
+    public function getFile($url, $cacheTime = 3600, $subFolderName = '', $extensionName = 'mod_jw_srfr')
     {
         jimport('joomla.filesystem.file');
 
@@ -245,9 +245,9 @@ class SimpleRssFeedReaderHelper
 
         // Check cache folder
         if ($subFolderName) {
-            $cacheFolderPath = JPATH_SITE.DS.'cache'.DS.$extensionName.DS.$subFolderName;
+            $cacheFolderPath = JPATH_SITE.'/cache/'.$extensionName.'/'.$subFolderName;
         } else {
-            $cacheFolderPath = JPATH_SITE.DS.'cache'.DS.$extensionName;
+            $cacheFolderPath = JPATH_SITE.'/cache/'.$extensionName;
         }
 
         if (file_exists($cacheFolderPath) && is_dir($cacheFolderPath)) {
@@ -258,24 +258,24 @@ class SimpleRssFeedReaderHelper
 
         $url = trim($url);
 
-        if (substr($url, 0, 4)=="http") {
+        if (substr($url, 0, 4) == "http") {
             $turl = explode("?", $url);
             $matchComponents = array("#(http|https)\:\/\/#s","#www\.#s");
             $replaceComponents = array("","");
             $turl = preg_replace($matchComponents, $replaceComponents, $turl[0]);
             $turl = str_replace(array("/","-","."), array("_","_","_"), $turl);
-            $tmpFile = $cacheFolderPath.DS.urlencode($turl).'_'.md5($url).'.cache';
+            $tmpFile = $cacheFolderPath.'/'.urlencode($turl).'_'.md5($url).'.cache';
         } else {
-            $tmpFile = $cacheFolderPath.DS.'cached_'.md5($url);
+            $tmpFile = $cacheFolderPath.'/cached_'.md5($url);
         }
 
         // Check if a cached copy exists otherwise create it
-        if (file_exists($tmpFile) && is_readable($tmpFile) && (filemtime($tmpFile)+$cacheTime) > time()) {
+        if (file_exists($tmpFile) && is_readable($tmpFile) && (filemtime($tmpFile) + $cacheTime) > time()) {
             $result = $tmpFile;
         } else {
             // Get file
             $feedOutput = '';
-            if (substr($url, 0, 4)=="http") {
+            if (substr($url, 0, 4) == "http") {
                 // remote file
                 if (ini_get('allow_url_fopen')) {
                     // file_get_contents
@@ -304,7 +304,7 @@ class SimpleRssFeedReaderHelper
                         $body = '';
                         do {
                             $header .= fgets($fp, 128);
-                        } while (strpos($header, "\r\n\r\n")=== false); // get the header data
+                        } while (strpos($header, "\r\n\r\n") === false); // get the header data
                         while (!feof($fp)) {
                             $body .= fgets($fp, 128);
                         } // get the actual content

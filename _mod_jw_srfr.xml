@@ -4,8 +4,8 @@
     <author>JoomlaWorks</author>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>
-    <copyright>Copyright (c) 2006 - 2023 JoomlaWorks Ltd. All rights reserved.</copyright>
-    <creationDate>July 28th, 2023</creationDate>
+    <copyright>Copyright (c) 2006 - 2024 JoomlaWorks Ltd. All rights reserved.</copyright>
+    <creationDate>June 4th, 2024</creationDate>
     <license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <version>4.0</version>
     <description>MOD_JW_SRFR_SIMPLE_RSS_FEED_READER_MODULE_BY_JOOMLAWORKS</description>
@@ -19,6 +19,12 @@
                 <field name="perFeedItems" type="text" default="5" size="4" label="MOD_JW_SRFR_MAXIMUM_ITEMS_TO_FETCH_PER_FEED" description="MOD_JW_SRFR_SET_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_WILL_BE_DISPLAYED_PER_RSS_FEED" />
                 <field name="totalFeedItems" type="text" default="10" size="4" label="MOD_JW_SRFR_TOTAL_ITEMS_FROM_ALL_FEEDS" description="MOD_JW_SRFR_SET_THE_TOTAL_NUMBER_OF_ITEMS_THAT_WILL_BE_DISPLAYED_FROM_ALL_FEEDS_SO_EVEN_IF_YOU_HAVE_4_FEEDS_DISPLAYING_IN_YOUR_WEBSITE_WITH_10_ITEMS_PER_FEED_AND_YOU_HAVE_SET_TOTAL_ITEMS_FROM_ALL_FEEDS_TO_15_THEN_NO_MORE_THAN_THE_LAST_15_ITEMS_FROM_ALL_FEEDS_WILL_BE_DISPLAYED_THIS_IS_A_NICE_OPTION_TO_HAVE_WHEN_YOU_DONT_WANT_THE_LIST_OF_FEEDS_TO_SPAN_A_MILE_HIGH_IN_YOUR_WEBSITE" />
                 <field name="feedTimeout" type="text" default="10" size="4" label="MOD_JW_SRFR_FEED_TIMEOUT_IN_SECONDS" description="MOD_JW_SRFR_SET_THE_TIME_IN_SECONDS_AFTER_WHICH_THE_MODULE_WILL_STOP_REQUESTING_DATA_FROM_PROBLEMATIC_RSS_FEEDS_SUCH_FEEDS_CAN_COME_FROM_SOURCE_SITES_THAT_ARE_EITHER_SLUGGISH_OR_DOWN_IT_IS_SUGGESTED_NOT_TO_EXCEED_30_SECONDS" />
+                <field name="feedOrder" type="list" default="date_desc" label="MOD_JW_SRFR_FEED_ITEM_ORDERING" description="">
+                    <option value="date_desc">MOD_JW_SRFR_DATE_DESC</option>
+                    <option value="date_asc">MOD_JW_SRFR_DATE_ASC</option>
+                    <option value="none">MOD_JW_SRFR_NONE</option>
+                    <option value="random">MOD_JW_SRFR_RANDOM</option>
+                </field>
                 <field name="" type="header" default="MOD_JW_SRFR_FEED_CONTENT_OPTIONS" label="" description="" />
                 <field name="feedItemTitle" type="radio" default="1" label="MOD_JW_SRFR_FEED_ITEM_TITLE" description="MOD_JW_SRFR_DISPLAY_THE_SYNDICATED_ARTICLE_TITLE_OR_NOT">
                     <option value="0">MOD_JW_SRFR_HIDE</option>

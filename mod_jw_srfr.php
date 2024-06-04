@@ -3,7 +3,7 @@
  * @version    4.0
  * @package    Simple RSS Feed Reader (module)
  * @author     JoomlaWorks - https://www.joomlaworks.net
- * @copyright  Copyright (c) 2006 - 2021 JoomlaWorks Ltd. All rights reserved.
+ * @copyright  Copyright (c) 2006 - 2024 JoomlaWorks Ltd. All rights reserved.
  * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  */
 
@@ -15,7 +15,7 @@ $mod_name             = "mod_jw_srfr";
 $mod_copyrights_start = "\n\n<!-- JoomlaWorks \"Simple RSS Feed Reader\" Module (v4.0) starts here -->\n";
 $mod_copyrights_end   = "\n<!-- JoomlaWorks \"Simple RSS Feed Reader\" Module (v4.0) ends here -->\n\n";
 
-// Conventions
+// B/C
 if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
 }
@@ -53,18 +53,18 @@ $feedsBlockPostLink           = $params->get('feedsBlockPostLink');
 $feedsBlockPostLinkURL        = $params->get('feedsBlockPostLinkURL');
 $feedsBlockPostLinkTitle      = $params->get('feedsBlockPostLinkTitle');
 $srfrCacheTime                = $params->get('srfrCacheTime', 30) * 60;
-$cacheLocation                = 'cache'.DS.$mod_name;
+$cacheLocation                = 'cache/'.$mod_name;
 
 // Includes
-require_once(dirname(__FILE__).DS.'helper.php');
+require_once(dirname(__FILE__).'/helper.php');
 
 // Fetch content
-$srfr = new SimpleRssFeedReaderHelper;
+$srfr = new SimpleRssFeedReaderHelper();
 $output = $srfr->getFeeds($srfrFeedsArray, $totalFeedItems, $perFeedItems, $feedTimeout, $feedItemDateFormat, $feedItemDescriptionWordlimit, $cacheLocation, $srfrCacheTime, $feedItemImageHandling, $feedItemImageResizeWidth);
 
 // Output content with template
 echo $mod_copyrights_start;
-require(JModuleHelper::getLayoutPath($mod_name, $mod_template.DS.'default'));
+require(JModuleHelper::getLayoutPath($mod_name, $mod_template.'/default'));
 echo $mod_copyrights_end;
 
 // END
