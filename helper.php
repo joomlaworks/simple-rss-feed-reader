@@ -229,7 +229,7 @@ class SimpleRssFeedReaderHelper
                 $img['src'] = false;
             }
             // Is this a real content image?
-            if (preg_match("#\.(jpg|jpeg|png|gif)#is", $img['src'], $imgExt)) {
+            if (preg_match("#\.(jpg|jpeg|png|gif|webp)#is", $img['src'], $imgExt)) {
                 $img['ext'] = true;
             } else {
                 $img['ext'] = false;
