@@ -17,9 +17,10 @@ The feeds are stored inside your Joomla site's cache folder and refreshed in a s
 - there's an additional option to serve resized images using a remote image resizing service (Images.weserv.nl - powered by CloudFlare's CDN) for fast loading times and without stressing your server
 - additional content options include pre-text, post-text and a custom link option at the bottom of the feeds block
 - MVC templating is standard - the module comes pre-packed with 3 sub-templates that will fit most sites - they also serve as a great starting point if you want to create your own
-- a special 3rd template (which was added in v3.8.0) allows for rendering any YouTube Playlist's feed as a list of videos (requires the use of the AllVideos plugin - also free)
 - one input box for feeds enables you to add unlimited sources to your module
 - after you install the module, add one or more feed sources in the related box under "Fetch Options" and simply adjust the "Feed Content Options" in the module parameters.
+- in version 3.8.0 we added a special 3rd template that allows for rendering any YouTube Playlist's feed as a list of videos (requires the use of the AllVideos plugin - also free)
+- in version 4.0 we added override support for templates under development (called via ?tmpl=), WEBP support, feed ordering and cURL was switched as the primary option for feed fetching.
 
 
 ## GETTING STARTED
@@ -37,7 +38,7 @@ Demo for "default" sub-template: [https://demo.joomlaworks.net](https://demo.joo
 
 
 ## COMPATIBILITY
-"Simple RSS Feed Reader" is fully compatible with Joomla versions 1.5, 2.5 & 3.x on servers running PHP 5 or 7. Although untested, it should function without any issues on PHP 8 as well.
+"Simple RSS Feed Reader" is fully compatible with Joomla versions 1.5, 2.5 & 3.x on servers running PHP 5, 7 & 8.
 
 
 ## LICENSE
