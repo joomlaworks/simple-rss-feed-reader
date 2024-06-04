@@ -32,7 +32,7 @@ class SimpleRssFeedReaderHelper
 
         $feeds = self::multiRequest($feedsArray, $cacheTime);
         $parsedFeeds = self::parseFeeds($feeds);
-        $feedItemsArray = array();
+        $feedItemsArray = [];
 
         if (is_array($parsedFeeds) && count($parsedFeeds)) {
             foreach ($parsedFeeds as $feed) {
@@ -78,7 +78,7 @@ class SimpleRssFeedReaderHelper
             }
 
             // Limit output
-            $outputArray = array();
+            $outputArray = [];
             $counter = 0;
             foreach ($feedItemsArray as $feedItem) {
                 if ($counter >= $totalFeedItems) {
@@ -129,7 +129,7 @@ class SimpleRssFeedReaderHelper
     public function multiRequest($data, $cacheTime)
     {
         ini_set('max_execution_time', 120); // Set max_execution_time to 120
-        $result = array();
+        $result = [];
         foreach ($data as $id => $url) {
             $url = trim($url);
             if ($url) {
@@ -143,7 +143,7 @@ class SimpleRssFeedReaderHelper
     // Parse array of feeds
     public function parseFeeds($feeds)
     {
-        $feedContents = array();
+        $feedContents = [];
         foreach ($feeds as $key => $feed) {
             libxml_use_internal_errors(true);
             $xml = simplexml_load_string($feed);
@@ -218,7 +218,7 @@ class SimpleRssFeedReaderHelper
         // find images
         $regex = "#<img.+?>#s";
         if (preg_match_all($regex, $string, $matches, PREG_PATTERN_ORDER) > 0) {
-            $img = array();
+            $img = [];
             // Entire <img> tag
             $img['tag'] = $matches[0][0];
             // Image src
