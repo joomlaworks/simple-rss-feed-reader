@@ -38,6 +38,7 @@ $srfrFeedsArray               = explode("\n", $srfrFeeds);
 $perFeedItems                 = $params->get('perFeedItems', 5);
 $totalFeedItems               = $params->get('totalFeedItems', 10);
 $feedTimeout                  = $params->get('feedTimeout', 5);
+$feedOrder                    = $params->get('feedOrder', 'date_desc');
 $feedTitle                    = $params->get('feedTitle', 1);
 $feedItemTitle                = $params->get('feedItemTitle', 1);
 $feedItemDate                 = $params->get('feedItemDate', 1);
@@ -60,7 +61,7 @@ require_once(dirname(__FILE__).'/helper.php');
 
 // Fetch content
 $srfr = new SimpleRssFeedReaderHelper();
-$output = $srfr->getFeeds($srfrFeedsArray, $totalFeedItems, $perFeedItems, $feedTimeout, $feedItemDateFormat, $feedItemDescriptionWordlimit, $cacheLocation, $srfrCacheTime, $feedItemImageHandling, $feedItemImageResizeWidth);
+$output = $srfr->getFeeds($srfrFeedsArray, $totalFeedItems, $perFeedItems, $feedTimeout, $feedItemDateFormat, $feedItemDescriptionWordlimit, $cacheLocation, $srfrCacheTime, $feedItemImageHandling, $feedItemImageResizeWidth, $feedOrder);
 
 // Output content with template
 echo $mod_copyrights_start;

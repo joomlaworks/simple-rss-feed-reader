@@ -12,7 +12,7 @@ defined('_JEXEC') or die('Restricted access');
 
 class SimpleRssFeedReaderHelper
 {
-    public function getFeeds($feedsArray, $totalFeedItems, $perFeedItems, $feedTimeout, $dateFormat, $wordLimit, $cacheLocation, $cacheTime, $imageHandling, $riWidth)
+    public function getFeeds($feedsArray, $totalFeedItems, $perFeedItems, $feedTimeout, $dateFormat, $wordLimit, $cacheLocation, $cacheTime, $imageHandling, $riWidth, $feedOrder)
     {
 
         /*
@@ -57,13 +57,25 @@ class SimpleRssFeedReaderHelper
                         $itemDateIndex = strftime('%Y%m%d%H%M%S', strtotime($item->pubDate)).'_'.$key;
 
                         // Pass all feed objects to an array
-                        $feedItemsArray[$itemDateIndex] = $feedElements[$key];
+                        if ($feedOrder == 'none') {
+                            $feedItemsArray[] = $feedElements[$key];
+                        } else {
+                            $feedItemsArray[$itemDateIndex] = $feedElements[$key];
+                        }
                     }
                 }
             }
 
-            // Reverse sort by key (=feed date)
-            krsort($feedItemsArray);
+            // Sort
+            if ($feedOrder == 'date_desc') {
+                krsort($feedItemsArray);
+            }
+            if ($feedOrder == 'date_asc') {
+                ksort($feedItemsArray);
+            }
+            if ($feedOrder == 'random') {
+                shuffle($feedItemsArray);
+            }
 
             // Limit output
             $outputArray = array();
