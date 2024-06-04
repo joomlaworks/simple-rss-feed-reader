@@ -25,6 +25,7 @@ $app      = JFactory::getApplication();
 $document = JFactory::getDocument();
 $user     = JFactory::getUser();
 $aid      = $user->get('aid');
+$template = JRequest::getCmd('template');
 
 // Assign paths
 $sitePath = JPATH_SITE;
@@ -65,7 +66,13 @@ $output = $srfr->getFeeds($srfrFeedsArray, $totalFeedItems, $perFeedItems, $feed
 
 // Output content with template
 echo $mod_copyrights_start;
-require(JModuleHelper::getLayoutPath($mod_name, $mod_template.'/default'));
+
+if ($template) {
+    require JPATH_SITE.'/templates/'.$template.'/html/'.$mod_name.'/'.$mod_template.'/default.php';
+} else {
+    require JModuleHelper::getLayoutPath($mod_name, $mod_template.'/default');
+}
+
 echo $mod_copyrights_end;
 
 // END
