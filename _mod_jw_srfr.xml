@@ -90,6 +90,6 @@
         <language tag="en-GB">language/en-GB/en-GB.mod_jw_srfr.sys.ini</language>
     </languages>
     <updateservers>
-        <server type="extension" priority="1" name="Simple RSS Feed Reader">http://cdn.joomlaworks.org/updates/srfr.xml</server>
+        <server type="extension" priority="1" name="Simple RSS Feed Reader">http://www.joomlaworks.net/static/updates/srfr.xml</server>
     </updateservers>
 </extension>
